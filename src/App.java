@@ -30,8 +30,7 @@ public class App {
 
 			if (option == 4) {
 				System.out.println("Saindo...");
-			}
-			else {
+			} else {
 				switch (option) {
 					case 1:
 						System.out.println(String.format("Seu saldo é R$%.2f", balance));
@@ -39,7 +38,14 @@ public class App {
 					case 2:
 						System.out.println("Quanto você deseja transferir?\n");
 						value = read.nextDouble();
-						balance -= value;
+						if (value > balance) {
+							System.out.println("Saldo insuficiente!");
+						} else if (value < 1) {
+							System.out.println("Valor inválido!");
+						} else if(value > balance || value == balance) {
+							balance -= value;
+							System.out.println(String.format("Você transferiu R$%.2f", value));
+						}
 						break;
 					case 3:
 						double newValue = new Random().nextDouble(1000);
